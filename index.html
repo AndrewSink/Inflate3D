@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Inflate3D</title>
+        <script defer src="https://cdn.tailwindcss.com"></script>
+        <!-- Three.js r140 (global) and legacy helpers -->
+        <script defer src="https://unpkg.com/three@0.140.0/build/three.min.js"></script>
+        <script defer src="https://unpkg.com/three@0.140.0/examples/js/controls/OrbitControls.js"></script>
+        <script defer src="https://unpkg.com/three@0.140.0/examples/js/loaders/STLLoader.js"></script>
+    </head>
+
+    <body class="bg-gray-900 text-gray-100">
+        <div class="flex flex-col h-screen">
+            <header class="px-4 sm:px-6 py-3 border-b border-gray-800 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-pink-500"></div>
+                    <h1 class="text-lg sm:text-xl font-semibold">Inflate3D</h1>
+                </div>
+                <div></div>
+            </header>
+
+            <main class="flex-1 relative">
+                <canvas id="viewport" class="absolute inset-0 w-full h-full block"></canvas>
+                <!-- Floating sidebar controls -->
+                <aside
+                    class="absolute top-4 left-4 w-80 max-w-full bg-gray-900/80 backdrop-blur border border-gray-800 rounded-lg shadow-lg p-4 space-y-4 divide-y divide-gray-800">
+                    <div class="space-y-2">
+                        <div class="text-xs uppercase tracking-wide text-gray-400">File</div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label
+                                class="inline-flex items-center justify-center px-3 py-2 rounded bg-gray-800 hover:bg-gray-700 cursor-pointer text-sm">
+                                <input id="fileInput" type="file" accept=".stl" class="hidden" />
+                                <span>Upload .STL</span>
+                            </label>
+                            <button id="downloadBtn"
+                                class="px-3 py-2 rounded bg-gray-800 hover:bg-gray-700 text-sm">Download .STL</button>
+                        </div>
+                    </div>
+                    <div class="pt-4 space-y-2">
+                        <div class="text-xs uppercase tracking-wide text-gray-400">Deform</div>
+                        <div class="flex items-center gap-3">
+                            <input id="inflateRange" type="range" min="-1" max="1" step="0.01" value="0"
+                                class="flex-1 accent-pink-500" />
+                            <span id="inflateVal" class="text-xs text-gray-300 w-10 text-right">0.00</span>
+                        </div>
+                        <div class="text-xs text-gray-500">Negative = deflate, Positive = inflate</div>
+                    </div>
+                    <div class="pt-4 space-y-2">
+                        <button id="centerBtn"
+                            class="w-full px-3 py-2 text-sm rounded bg-gray-800 hover:bg-gray-700">Inflate Sphere
+                            Position: OFF</button>
+                        <div class="text-xs text-gray-400">Position the center of the inflate/deflate sphere.</div>
+                    </div>
+                    <div class="pt-4 space-y-2">
+                        <div class="text-xs uppercase tracking-wide text-gray-400">Transform</div>
+                        <div class="inline-flex rounded overflow-hidden border border-gray-700">
+                            <button id="modeMove" class="px-3 py-1 text-xs bg-gray-800 hover:bg-gray-700">Move</button>
+                            <button id="modeRotate"
+                                class="px-3 py-1 text-xs bg-gray-900 hover:bg-gray-800">Rotate</button>
+                        </div>
+                    </div>
+                    <div class="pt-4 space-y-2">
+                        <button id="flatBtn" class="w-full px-3 py-2 rounded bg-gray-800 hover:bg-gray-700 text-sm">Flat
+                            Base: OFF</button>
+                    </div>
+                    <div class="pt-4">
+                        <button id="resetBtn"
+                            class="w-full px-3 py-2 rounded bg-red-600 hover:bg-red-500 text-sm">Reset</button>
+                    </div>
+                </aside>
+            </main>
+            <footer class="px-4 sm:px-6 py-3 text-xs text-gray-400 text-center">
+                Andrew Sink - 2025
+            </footer>
+        </div>
+
+        <script defer src="https://unpkg.com/three@0.140.0/examples/js/exporters/STLExporter.js"></script>
+        <script defer src="https://unpkg.com/three@0.140.0/examples/js/controls/TransformControls.js"></script>
+        <script defer src="./script.js"></script>
+    </body>
+
+</html>
