@@ -7,3 +7,24 @@ Try it out: [Inflate3D](https://andrewsink.github.io/Inflate3D/)
 Inflate3D is a quick way to deform your mesh 3D model by inflating or deflating using a simple slider bar. 
 
 Toggle the "Flat Base" to give the 3D model a flat base, ideal for 3D printing. 
+
+## Attributions
+
+This project builds on excellent open‑source work. Thank you to the authors and maintainers of the following projects:
+
+- Three.js (and Three.js Examples: `OrbitControls`, `TransformControls`, `STLLoader`, `STLExporter`)
+  - License: MIT
+  - Repository: https://github.com/mrdoob/three.js
+  - CDN: `https://unpkg.com/three@0.140.0/`
+
+- Tailwind CSS (for the lightweight UI styling via the CDN build)
+  - License: MIT
+  - Website: https://tailwindcss.com
+  - CDN: `https://cdn.tailwindcss.com`
+
+- Inflate/Deflate algorithm inspiration
+  - The deformation math is adapted from the "Bloat" modifier concept from the `three.modifiers` project.
+  - Package: https://www.npmjs.com/package/three.modifiers
+  - License: MIT (see the package for details)
+
+All third‑party libraries are used under their respective licenses.
