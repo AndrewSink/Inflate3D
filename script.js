@@ -531,7 +531,10 @@
             gizmoCenter.attach(centerMarker);
             gizmoCenter.visible = true;
             gizmoCenter.setMode('translate');
+            // Fully disable model gizmo to avoid accidental model moves
             gizmoModel.visible = false;
+            gizmoModel.detach();
+            gizmoModel.enabled = false;
             centerBtn.textContent = 'Inflate Sphere Position: ON';
         } else if (hitModel) {
             // Attach/show model gizmo; fully exit center edit state
@@ -540,6 +543,7 @@
             gizmoModel.setSpace('local'); // rotate around model bbox center (local origin)
             gizmoModel.visible = true;
             gizmoModel.setMode(currentModelMode);
+            gizmoModel.enabled = true;
             if (gizmoCenter) {
                 gizmoCenter.detach();
                 gizmoCenter.visible = false;
@@ -550,7 +554,11 @@
             }
         } else {
             // Clicked empty space: hide both gizmos (center marker can remain visible)
-            if (gizmoModel) gizmoModel.visible = false;
+            if (gizmoModel) {
+                gizmoModel.visible = false;
+                gizmoModel.detach();
+                gizmoModel.enabled = false;
+            }
             if (gizmoCenter) {
                 gizmoCenter.detach();
                 gizmoCenter.visible = false;
@@ -584,11 +592,16 @@
             gizmoCenter.attach(centerMarker);
             gizmoCenter.visible = true;
             gizmoCenter.setMode('translate');
-            if (gizmoModel) gizmoModel.visible = false;
+            if (gizmoModel) {
+                gizmoModel.visible = false;
+                gizmoModel.detach();
+                gizmoModel.enabled = false;
+            }
             centerBtn.textContent = 'Inflate Sphere Position: ON';
         } else {
             gizmoCenter.detach();
             gizmoCenter.visible = false;
+            // Re-enable model gizmo only when user clicks the model again
             centerBtn.textContent = 'Inflate Sphere Position: OFF';
         }
     });
