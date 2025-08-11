@@ -366,7 +366,7 @@
             inflateAmount = 0;
             if (inflateRange) inflateRange.value = '0';
             const lblUp = document.getElementById('inflateVal');
-            if (lblUp) lblUp.textContent = '0.00';
+            if (lblUp) lblUp.value = '0.00';
             setStatus('Use the slider to inflate/deflate.');
         } catch (err) {
             console.error('[inflate3D] Upload failure:', err);
@@ -377,12 +377,32 @@
     inflateRange.addEventListener('input', (e) => {
         inflateAmount = parseFloat(e.target.value);
         const lbl = document.getElementById('inflateVal');
-        if (lbl) lbl.textContent = inflateAmount.toFixed(2);
+        if (lbl) lbl.value = inflateAmount.toFixed(2);
     });
+
+    // Allow users to type a value directly
+    const inflateValInput = document.getElementById('inflateVal');
+    // Initialize numeric field to 0 and wire two-way binding
+    if (inflateValInput) {
+        inflateValInput.value = '0.00';
+        inflateValInput.addEventListener('input', (e) => {
+            const raw = parseFloat(e.target.value);
+            if (!Number.isFinite(raw)) return;
+            const clamped = Math.max(-1, Math.min(1, raw));
+            inflateAmount = clamped;
+            inflateRange.value = clamped.toString();
+        });
+        inflateValInput.addEventListener('change', () => {
+            // Normalize formatting
+            inflateValInput.value = (+inflateRange.value).toFixed(2);
+        });
+    }
 
     resetBtn.addEventListener('click', () => {
         inflateAmount = 0;
         inflateRange.value = '0';
+        const lblReset = document.getElementById('inflateVal');
+        if (lblReset) lblReset.value = '0.00';
         if (mesh && basePositions) {
             const pos = mesh.geometry.getAttribute('position');
             pos.array.set(basePositions);
@@ -479,6 +499,10 @@
     });
 
     onResize();
+    // Ensure slider UI mirrors initial value on first paint
+    if (inflateRange) inflateRange.value = '0';
+    const initialLbl = document.getElementById('inflateVal');
+    if (initialLbl) initialLbl.value = '0.00';
     animate();
     setStatus('Loading default model...');
 
@@ -662,7 +686,7 @@
             inflateAmount = 0;
             if (inflateRange) inflateRange.value = '0';
             const lblDef = document.getElementById('inflateVal');
-            if (lblDef) lblDef.textContent = '0.00';
+            if (lblDef) lblDef.value = '0.00';
         } catch (e) {
             console.error('[inflate3D] Default model load failure:', e);
             setStatus('Load an STL to begin');

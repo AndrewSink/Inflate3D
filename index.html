@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Inflate3D</title>
-        <script defer src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
         <!-- Three.js r140 (global) and legacy helpers -->
         <script defer src="https://unpkg.com/three@0.140.0/build/three.min.js"></script>
         <script defer src="https://unpkg.com/three@0.140.0/examples/js/controls/OrbitControls.js"></script>
@@ -44,7 +44,8 @@
                         <div class="flex items-center gap-3">
                             <input id="inflateRange" type="range" min="-1" max="1" step="0.01" value="0"
                                 class="flex-1 accent-pink-500" />
-                            <span id="inflateVal" class="text-xs text-gray-300 w-10 text-right">0.00</span>
+                            <input id="inflateVal" type="number" min="-1" max="1" step="0.01" value="0.00"
+                                class="text-xs text-gray-300 w-14 text-right bg-transparent border border-gray-700/50 rounded px-1 focus:outline-none focus:ring-1 focus:ring-pink-500" />
                         </div>
                         <div class="text-xs text-gray-500">Negative = deflate, Positive = inflate</div>
                     </div>
