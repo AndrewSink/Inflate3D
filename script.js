@@ -420,6 +420,14 @@
             // Refit camera to object and rebuild grid plane
             fitCameraToObject(mesh);
         }
+        // Ensure Flat Base is OFF on reset
+        flatBaseActive = false;
+        if (flatBtn) {
+            flatBtn.classList.remove('bg-pink-600', 'hover:bg-pink-500');
+            flatBtn.classList.add('bg-gray-800');
+            flatBtn.textContent = 'Flat Base: OFF';
+        }
+        if (flatStateEl) flatStateEl.textContent = 'Flat Base: OFF';
         setStatus('Reset to original.');
     });
 
