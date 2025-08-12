@@ -6,7 +6,7 @@ Inflate3D is a quick way to deform your mesh 3D model by inflating or deflating 
 
 ![inflate3D](https://github.com/user-attachments/assets/5d94d9f1-9859-4c34-a96a-0b8caf81a598)
 
-You adjust the amount and position of the inflation modifier, as well as adding a flat base to the model. 
+You can adjust the amount and position of the inflation modifier, as well as add a flat base to the model. 
 
 ![demo3](https://github.com/user-attachments/assets/2a022760-7388-4c20-9305-c9c1a659f3cc)
 
