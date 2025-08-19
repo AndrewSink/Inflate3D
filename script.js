@@ -403,6 +403,14 @@
         inflateRange.value = '0';
         const lblReset = document.getElementById('inflateVal');
         if (lblReset) lblReset.value = '0.00';
+        // Ensure Flat Base is fully reset to OFF state
+        flatBaseActive = false;
+        if (flatBtn) {
+            flatBtn.classList.remove('bg-pink-600', 'hover:bg-pink-500');
+            flatBtn.classList.add('bg-gray-800');
+            flatBtn.textContent = 'Flat Base: OFF';
+        }
+        if (flatStateEl) flatStateEl.textContent = 'Flat Base: OFF';
         if (mesh && basePositions) {
             const pos = mesh.geometry.getAttribute('position');
             pos.array.set(basePositions);
@@ -420,14 +428,6 @@
             // Refit camera to object and rebuild grid plane
             fitCameraToObject(mesh);
         }
-        // Ensure Flat Base is OFF on reset
-        flatBaseActive = false;
-        if (flatBtn) {
-            flatBtn.classList.remove('bg-pink-600', 'hover:bg-pink-500');
-            flatBtn.classList.add('bg-gray-800');
-            flatBtn.textContent = 'Flat Base: OFF';
-        }
-        if (flatStateEl) flatStateEl.textContent = 'Flat Base: OFF';
         setStatus('Reset to original.');
     });
 
